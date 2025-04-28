@@ -1,15 +1,30 @@
 "use client";
 
-import { useState } from "react";
-import TransactionForm from "../components/TransactionForm.jsx";
-import TransactionList from "../components/TransactionList.jsx";
-import MonthlyExpensesChart from "@/components/MonthlyExpensesChart.jsx";
+import { useState, useEffect } from "react";
+import TransactionForm from "../components/TransactionForm";
+import TransactionList from "../components/TransactionList";
+import MonthlyExpensesChart from "../components/MonthlyExpensesChart";
 
 export default function Home() {
   const [transactions, setTransactions] = useState([]);
 
-  const addTransaction = (txn) => {
-    setTransactions([...transactions, txn]);
+  // Fetch data from API
+  useEffect(() => {
+    fetch("/api/transactions")
+      .then((res) => res.json())
+      .then((data) => setTransactions(data));
+  }, []);
+
+  const addTransaction = async (txn) => {
+    const res = await fetch("/api/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(txn),
+    });
+    const newTxn = await res.json();
+    setTransactions([...transactions, newTxn]);
   };
 
   const deleteTransaction = (index) => {
