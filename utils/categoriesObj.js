@@ -1,0 +1,1 @@
+export default ["Food", "Travel", "Shopping", "Bills", "Other"]

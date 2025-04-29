@@ -13,3 +13,19 @@ export async function POST(request) {
   const transaction = await Transaction.create(body);
   return Response.json(transaction);
 }
+
+export async function PUT(request) {
+  await dbConnect();
+  const { id, ...body } = await request.json();
+  const transaction = await Transaction.findByIdAndUpdate(id, body, {
+    new: true,
+  });
+  return Response.json(transaction);
+}
+
+export async function DELETE(request) {
+  await dbConnect();
+  const { id } = await request.json();
+  const transaction = await Transaction.findByIdAndDelete(id);
+  return Response.json(transaction);
+}

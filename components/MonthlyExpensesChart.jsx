@@ -16,7 +16,7 @@ export default function MonthlyExpensesChart({ transactions }) {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="amount" fill="#8884d8" />
+          <Bar dataKey="amount" fill="#60B5FF" />
         </BarChart>
       </ResponsiveContainer>
     </div>
