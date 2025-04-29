@@ -155,7 +155,7 @@ export default function Home() {
 }
 
 function InputForms({ children }) {
-  return <div className="flex flex-row lg:space-x-4">{children}</div>;
+  return <div className="grid grid-cols-1 lg:grid-cols-2 lg:space-x-4">{children}</div>;
 }
 
 function RightSide({ children }) {
